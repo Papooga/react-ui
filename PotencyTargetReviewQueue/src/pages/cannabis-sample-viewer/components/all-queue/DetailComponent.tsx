@@ -7,7 +7,7 @@ import {
     defaultHistoricalSelectedValue,
     defaultHistoricalSelectValues,
     HistoricalSelectDataType
-} from "../../CannabisSample.util.ts";
+} from "../../PotencyTargetReviewQueue.util.ts";
 import {useFetchSampleHistoricalDataQuery} from "../../queries/useFetchSampleHistoricalDataQuery.ts";
 
 interface DetailProps {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Card} from "@heroui/react";
 import {IAnalyte} from "../../../../../types/cannabis-sample.types.ts";
-import {HistoricalSelectDataType} from "../../CannabisSample.util.ts";
+import {HistoricalSelectDataType} from "../../PotencyTargetReviewQueue.util.ts";
 
 interface AnalyteCardProps {
     analyte: IAnalyte;

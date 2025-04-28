@@ -3,18 +3,19 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-    base: '/react/',
+  plugins: [react()],
+    base: '/react/PTRQ/',  // This is the critical part
     build: {
-        outDir: '../NCLims.App/NCLims.React'
+        outDir: 'dist',
     },
-    plugins: [react()],
-    server: {
-        proxy: {
-            "/api": {
-                target: "https://lims5000-qa.azurewebsites.net",
-                changeOrigin: true,
-                secure: false,
-            },
-        },
-    }
+  server: {
+    proxy: {
+      "/api": {
+        /*target: "https://lims5000-qa.azurewebsites.net",*/
+        target: "http://localhost:50511/",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  }
 })

@@ -12,7 +12,6 @@ import {
     TextFilterModule,
 } from "ag-grid-enterprise";
 import DetailComponent from "./DetailComponent.tsx";
-import {Card} from "@heroui/react";
 import ActionCell from "./ActionCell.tsx";
 import PotencyTargetTypeCell from "./PotencyTargetTypeCell.tsx";
 
@@ -22,9 +21,10 @@ ModuleRegistry.registerModules([
 ]);
 
 interface Props {
-    samples: ICannabisSampleViewer[]
+    samples: ICannabisSampleViewer[],
+    isLoadingSamples: boolean,
 }
-const MainSampleGrid: React.FC<Props> = ({ samples }) => {
+const MainSampleGrid: React.FC<Props> = ({ samples, isLoadingSamples }) => {
     const [rowData, setRowData] = useState<ICannabisSampleViewer[]>(samples);
     const [gridApi, setGridApi] = useState<GridApi<ICannabisSampleViewer> | null>(null);
     const detailCellRenderer = useCallback(DetailComponent, []);
@@ -34,8 +34,6 @@ const MainSampleGrid: React.FC<Props> = ({ samples }) => {
         { field: "labSampleNr", headerName: "Lab Sample #", filter: "agNumberColumnFilter" },
         { field: "clientName", headerName: "Client", filter: true, sortable: true },
         { field: "confidentCannabisId", headerName: "CC ID", filter: true, sortable: true },
-        { field: "licenseNumber", headerName: "License #", filter: true, sortable: true },
-        { field: "labId", headerName: "Lab Id", filter: true, sortable: true },
         { field: "metrcPackageNr", headerName: "Metrc Package #", filter: true, sortable: true },
         {
             field: "receivedOn",
@@ -162,21 +160,20 @@ const MainSampleGrid: React.FC<Props> = ({ samples }) => {
     }, [samples, gridApi]);
 
     return (
-        <Card className="px-[14px] py-[18px] bg-[#f4f4f5] shadow-none">
-            <div className="ag-theme-alpine" style={{ height: 800, width: "100%" }}>
-                <AgGridReact rowData={rowData}
-                             rowBuffer={10}
-                             columnDefs={columnDefs}
-                             masterDetail={true}
-                             detailCellRenderer={detailCellRenderer}
-                             detailCellRendererParams={detailCellRendererParams}
-                             pagination={true}
-                             paginationPageSize={50}
-                             detailRowHeight={666}
-                             onGridReady={(params) => setGridApi(params.api)}
-                />
-            </div>
-        </Card>
+        <div className="ag-theme-alpine" style={{ height: 800, width: "100%" }}>
+            <AgGridReact rowData={rowData}
+                         loading={isLoadingSamples}
+                         rowBuffer={10}
+                         columnDefs={columnDefs}
+                         masterDetail={true}
+                         detailCellRenderer={detailCellRenderer}
+                         detailCellRendererParams={detailCellRendererParams}
+                         pagination={true}
+                         paginationPageSize={50}
+                         detailRowHeight={666}
+                         onGridReady={(params) => setGridApi(params.api)}
+            />
+        </div>
     );
 }
 

@@ -13,12 +13,7 @@ const MainSampleGridContainer = () => {
 
     return (
         <>
-            {loading && (
-                <div>loading...</div>
-            )}
-            {!loading && samples && samples.length > 0 && (
-                <MainSampleGrid samples={samples} />
-            )}
+            <MainSampleGrid samples={samples ?? []} isLoadingSamples={loading} />
         </>
     )
 }

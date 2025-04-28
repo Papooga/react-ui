@@ -19,6 +19,7 @@ import ConfirmActionModal from "../../../../modals/ConfirmActionModal.tsx";
 import {IReplicateRequestForm} from "../../../../../types/repetition-request.types.ts";
 import {useNoActionNeededMutation} from "../../mutations/useNoActionNeededMutation.ts";
 import {useSubmitRequestReplicateMutation} from "../../mutations/useSubmitRequestReplicateMutation.ts";
+import {AiOutlineCloseCircle} from "react-icons/ai";
 
 interface IProps {
     sample: ICannabisSampleViewer;
@@ -68,13 +69,12 @@ const ActionCell: React.FC<IProps> = ({sample, handleRowRemoveFromSampleGrid, on
                         <IoIosGitPullRequest fill="currentColor" size={17} />
                     </Button>
                 </Tooltip>
-                {sample.reanalysisStatus && (
-                    <Tooltip content="No action needed">
-                        <Button color="success" isIconOnly variant="ghost" size={"sm"} onPress={onOpenConfirmModal}>
-                            <FaCheck fill="currentColor" size={14} />
-                        </Button>
-                    </Tooltip>
-                )}
+
+                <Tooltip content="No action needed">
+                    <Button color="success" isIconOnly variant="ghost" size={"sm"} onPress={onOpenConfirmModal}>
+                        <FaCheck fill="currentColor" size={14} />
+                    </Button>
+                </Tooltip>
             </div>
 
             <Modal backdrop={"blur"} isOpen={isOpenRepReq} size={"xl"} onClose={onCloseRepReq}>
@@ -112,7 +112,7 @@ const ActionCell: React.FC<IProps> = ({sample, handleRowRemoveFromSampleGrid, on
                                 </div>
                             </ModalBody>
                             <ModalFooter>
-                                <Button color="danger" variant="ghost" onPress={onCloseRepReq}>
+                                <Button color="danger" variant="ghost" onPress={onCloseRepReq} startContent={<AiOutlineCloseCircle />}>
                                     Close
                                 </Button>
                                 <Button color="primary" isLoading={isSubmittingReplicateRequest}
@@ -127,8 +127,9 @@ const ActionCell: React.FC<IProps> = ({sample, handleRowRemoveFromSampleGrid, on
             </Modal>
 
             <ConfirmActionModal isOpen={isOpenNoAction} onClose={onCloseNoAction}
+                                onConfirm={initiateNoActionNeeded}
                                 isSubmitting={isProcessingNoActionNeeded}
-                                confirmButtonText={"Yes, process"} onConfirm={initiateNoActionNeeded}>
+                                confirmButtonText={"Yes, process"}>
                 <ConfirmActionModal.Body>
                     <p>Are you sure you want to proceed?</p>
                 </ConfirmActionModal.Body>

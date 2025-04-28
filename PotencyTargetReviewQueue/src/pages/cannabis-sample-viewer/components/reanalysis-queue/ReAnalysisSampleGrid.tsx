@@ -20,9 +20,10 @@ ModuleRegistry.registerModules([
 
 interface IProps {
     replicateRequests: IReplicateRequest[];
+    loading: boolean;
 }
 
-const ReAnalysisSampleGrid: React.FC<IProps> = ({replicateRequests}) => {
+const ReAnalysisSampleGrid: React.FC<IProps> = ({replicateRequests, loading}) => {
     const [rowData, setRowData] = useState<IReplicateRequest[]>(replicateRequests);
     const detailCellRenderer = useCallback(ReAnalysisDetailComponent, []);
     const columnDefs: ColDef<IReplicateRequest>[] = [
@@ -62,6 +63,8 @@ const ReAnalysisSampleGrid: React.FC<IProps> = ({replicateRequests}) => {
         },
         {
             headerName: 'Action',
+            width: 100,
+            pinned: 'right',
             cellRenderer: UpdateStatusCell,
             cellRendererParams: (params: ICellRendererParams<IReplicateRequest>) => ({
                 replicateRequest: params.data,
@@ -85,12 +88,13 @@ const ReAnalysisSampleGrid: React.FC<IProps> = ({replicateRequests}) => {
         if (replicateRequests.length > 0) {
             setRowData(replicateRequests);
         }
-    }, []);
+    }, [replicateRequests.length]);
 
     return (
         <>
             <div className="ag-theme-alpine" style={{ height: "100%", width: "100%" }}>
                 <AgGridReact rowData={rowData}
+                             loading={loading}
                              rowBuffer={10}
                              columnDefs={columnDefs}
                              masterDetail={true}

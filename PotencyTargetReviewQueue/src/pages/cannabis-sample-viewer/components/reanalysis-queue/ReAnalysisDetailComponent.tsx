@@ -1,9 +1,9 @@
 import * as React from "react";
-import {useEffect, useMemo, useState} from "react";
-import {IReplicateRequest, IReplicateRequestDetail} from "../../../../../types/repetition-request.types.ts";
+import {useMemo} from "react";
+import {IReplicateRequest} from "../../../../../types/repetition-request.types.ts";
 import ReAnalysisReplicateResultsGrid from "./ReAnalysisReplicateResultsGrid.tsx";
 import ReAnalysisReplicateResultHistory from "./ReAnalysisReplicateResultHistory.tsx";
-import agent from "../../../../api/agent.ts";
+import {useFetchReAnalysisDetailsData} from "../../queries/useFetchReAnalysisDetailsData.ts";
 
 interface IProps {
     replicateRequest: IReplicateRequest;
@@ -11,36 +11,9 @@ interface IProps {
 }
 const ReAnalysisDetailComponent: React.FC<IProps> = ({replicateRequest, analytes}) => {
     const stableAnalytes = useMemo(() => analytes || ["TOTTHC"], [analytes]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<Error | null>(null);
-    const [requestDetails, setRequestDetails] = useState<IReplicateRequestDetail[] | null>([]);
+    const { data: requestDetails, isPending: loading } = useFetchReAnalysisDetailsData(stableAnalytes, replicateRequest.samplePanelId);
 
-    useEffect(() => {
-        const fetchReAnalysisDetailData = async () => {
-            setLoading(true);
-            setError(null);
-            try {
-                const apiUrl = '/api/v1/replicate-request-details';
-                const payload = {
-                    samplePanelId: replicateRequest.samplePanelId,
-                    analytes: stableAnalytes
-                };
-
-                const response = await agent.post<IReplicateRequestDetail[]>(apiUrl, payload);
-                console.log(payload);
-                console.log(response);
-                setRequestDetails(response);
-            } catch (e) {
-                setError(e as Error);
-                console.log(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchReAnalysisDetailData();
-    }, [replicateRequest.samplePanelId, stableAnalytes]);
-
+    console.log(requestDetails);
 
     return (
         <div className={"p-[14px] h-[100%]"}>

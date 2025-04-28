@@ -1,6 +1,6 @@
 import React from "react";
 import {Chip} from "@heroui/react";
-import {getPotencyTargetTypeChipColor, getPotencyTargetTypeStr} from "../../CannabisSample.util.ts";
+import {getPotencyTargetTypeChipColor, getPotencyTargetTypeStr} from "../../PotencyTargetReviewQueue.util.ts";
 
 interface IProps {
     potencyTargetType: string;

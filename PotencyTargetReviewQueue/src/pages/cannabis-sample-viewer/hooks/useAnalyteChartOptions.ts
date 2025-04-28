@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {AgChartOptions} from "ag-charts-community";
 import {IAnalyte} from "../../../../types/cannabis-sample.types.ts";
-import {HistoricalSelectDataType} from "../CannabisSample.util.ts";
+import {HistoricalSelectDataType} from "../PotencyTargetReviewQueue.util.ts";
 
 export const useAnalyteChartOptions = (analyte: IAnalyte, historicalTimeFrame: HistoricalSelectDataType) => {
     const [options, setOptions] = useState<AgChartOptions>({});

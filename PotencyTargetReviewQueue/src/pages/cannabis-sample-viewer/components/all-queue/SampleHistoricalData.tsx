@@ -1,7 +1,7 @@
 import * as React from "react";
 import SampleHistoricalAnalyteCard from "./SampleHistoricalAnalyteCard.tsx";
 import {IAnalyte} from "../../../../../types/cannabis-sample.types.ts";
-import {HistoricalSelectDataType} from "../../CannabisSample.util.ts";
+import {HistoricalSelectDataType} from "../../PotencyTargetReviewQueue.util.ts";
 import AnalyteRepetitionGrid from "./AnalyteRepetitionGrid.tsx";
 import AnalyteHistoricalChart from "./AnalyteHistoricalChart.tsx";
 

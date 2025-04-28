@@ -1,6 +1,6 @@
 import {useQuery} from "@tanstack/react-query";
 import {DateValue} from "@heroui/react";
-import {formatDate} from "../CannabisSample.util.ts";
+import {formatDate} from "../PotencyTargetReviewQueue.util.ts";
 import agent from "../../../api/agent.ts";
 import {ICannabisSampleViewer} from "../../../../types/cannabis-sample.types.ts";
 import {useCannabisSampleFilterStore} from "../../../stores/useCannabisSampleFilterStore.ts";

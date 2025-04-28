@@ -1,14 +1,16 @@
-
 import './App.css'
 import {Routes, Route} from "react-router-dom";
-import CannabisSampleReviewerPage from "./pages/cannabis-sample-viewer/CannabisSampleReviewerPage.tsx";
+import PotencyTargetReviewQueue from "./pages/cannabis-sample-viewer/PotencyTargetReviewQueue.tsx";
+import Clients from "./pages/clients/Clients.tsx";
 
 function App() {
 
   return (
     <>
         <Routes>
-            <Route path="/cannabis-sample-reviewer" element={<CannabisSampleReviewerPage />} />
+            <Route path="/" element={<PotencyTargetReviewQueue />} />
+            <Route path="/cannabis-sample-reviewer" element={<PotencyTargetReviewQueue />} />
+            <Route path="/clients" element={<Clients />} />
         </Routes>
     </>
   )

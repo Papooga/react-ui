@@ -2,6 +2,7 @@ import {Button, Card, DatePicker, Form} from "@heroui/react";
 import {useCannabisSampleFilterStore} from "../../../../stores/useCannabisSampleFilterStore.ts";
 import {useQueryClient} from "@tanstack/react-query";
 import {useFetchSamplesQuery} from "../../queries/useFetchSamplesQuery.ts";
+import {TbDatabaseSearch} from "react-icons/tb";
 
 const CannabisSampleReviewerHeader = () => {
     const startDate = useCannabisSampleFilterStore((state) => state.startDate);
@@ -23,7 +24,7 @@ const CannabisSampleReviewerHeader = () => {
     };
 
     return (
-        <Card className="px-[14px] py-[18px] bg-[#f4f4f5] shadow-none">
+        <Card className="px-[14px] py-[18px] border border-[#ddddde] shadow-none">
             <h3 className="mb-4 text-[20px]">Potency Target Review Queue</h3>
 
             <div className="flex items-center space-x-4 gap-5">
@@ -31,19 +32,23 @@ const CannabisSampleReviewerHeader = () => {
                     <div className="flex gap-2 mb-2">
                         <DatePicker variant="faded" isRequired
                                     size="sm"
-                                    className="w-[250px]"
+                                    radius={"lg"}
+                                    className="w-[300px]"
                                     label="Start date"
                                     value={startDate}
                                     onChange={setStartDate} />
 
                         <DatePicker variant="faded" isRequired
                                     size="sm"
-                                    className=""
+                                    radius={"lg"}
+                                    className="w-[300px]"
                                     value={endDate}
                                     onChange={setEndDate}
                                     label="End date" />
 
-                        <Button color={"default"} fullWidth type="submit" isLoading={loading || isRefetching}>Fetch samples</Button>
+                        <Button color={"secondary"} size={"lg"} isIconOnly={true} variant={"ghost"} type="submit" isLoading={loading || isRefetching}>
+                            <TbDatabaseSearch size={20} />
+                        </Button>
                     </div>
                 </Form>
             </div>

@@ -2,7 +2,7 @@ import * as React from "react";
 import {Card} from "@heroui/react";
 import {IAnalyte} from "../../../../../types/cannabis-sample.types.ts";
 import { AgCharts } from "ag-charts-react";
-import {HistoricalSelectDataType} from "../../CannabisSample.util.ts";
+import {HistoricalSelectDataType} from "../../PotencyTargetReviewQueue.util.ts";
 import {useAnalyteChartOptions} from "../../hooks/useAnalyteChartOptions.ts";
 
 interface AnalyteHistoricalChartProps {

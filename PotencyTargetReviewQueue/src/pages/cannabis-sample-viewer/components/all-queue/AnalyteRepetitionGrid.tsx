@@ -2,7 +2,7 @@ import * as React from "react";
 import {Card} from "@heroui/react";
 import {AgGridReact} from "ag-grid-react";
 import {useEffect, useMemo, useRef, useState} from "react";
-import {defColDefs, flattenAnalytes, getValueOrDash} from "../../CannabisSample.util.ts";
+import {defColDefs, flattenAnalytes, getValueOrDash} from "../../PotencyTargetReviewQueue.util.ts";
 import {ColDef} from "ag-grid-enterprise";
 import {useFetchAnalyteRepetitions} from "../../queries/useFetchAnalyteRepetitions.ts";
 
